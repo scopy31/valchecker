@@ -535,14 +535,13 @@ class Ui_MainWindow(object):
         self.line_5_checkbox.setText(_translate("MainWindow", "Yes"))
         self.settings_savebtn.setText(_translate("MainWindow", "Save"))
         self.info_title.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:24pt;\">ValChecker 0.00.0</span></p><p align=\"center\"><span style=\" font-size:16pt;\">By liljaba1337</span></p><p align=\"center\"><br/></p><p align=\"center\"><span style=\" font-size:12pt;\">Protected by Apache License 2.0</span></p></body></html>"))
-import resource_rc
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
+# if __name__ == "__main__":
+#     import sys
+#     app = QtWidgets.QApplication(sys.argv)
+#     MainWindow = QtWidgets.QMainWindow()
+#     ui = Ui_MainWindow()
+#     ui.setupUi(MainWindow)
+#     MainWindow.show()
+#     sys.exit(app.exec_())

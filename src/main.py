@@ -7,11 +7,16 @@ from tkinter import filedialog
 from InquirerPy import inquirer
 from InquirerPy.separator import Separator
 import colorama
+from PyQt5 import QtCore, QtGui, QtWidgets
+import sys as syst
+
+
 
 
 import requests
 
 import checker
+from codeparts.valkekerui.UI import Ui_MainWindow
 from codeparts import checkers, systems, validsort
 from codeparts.systems import system
 
@@ -24,7 +29,7 @@ class program():
     def __init__(self) -> None:
         self.count = 0
         self.checked = 0
-        self.version = '3.12.2'
+        self.version = '4.0 beta'
         self.riotlimitinarow = 0
         path = os.getcwd()
         self.parentpath = os.path.abspath(os.path.join(path, os.pardir))
@@ -42,69 +47,12 @@ class program():
             print('no internet connection')
             os._exit(0)
         os.system('cls')
-        codes = vars(colorama.Fore)
-        colors = [codes[color] for color in codes if color not in ['BLACK']]
-        colored_name = [random.choice(
-            colors) + char for char in f'ValChecker by liljaba1337']
-        print(sys.get_spaces_to_center(f'ValChecker by liljaba1337') +
-              (''.join(colored_name))+colorama.Fore.RESET)
-        print(sys.center(f'v{self.version}'))
-        if self.lastver != self.version and 'beta' not in self.version:
-            print(sys.center(
-                f'\nnext version {self.lastver} is available!'))
-            if inquirer.confirm(
-                message="{}Would you like to download it now?".format(system.get_spaces_to_center('Would you like to download it now? (Y/n)')), default=True, qmark=''
-            ).execute():
-                os.system(f'{self.parentpath}/updater.bat')
-                os._exit(0)
-        menu_choices = [
-            Separator(),
-            'Start Checker',
-            'Edit Settings',
-            'Sort Valid',
-            'Test Proxy',
-            'Info/Help',
-            Separator(),
-            'Exit'
-        ]
-        print(sys.center('\nhttps://github.com/LIL-JABA/valchecker\n'))
-        res = inquirer.select(
-            message="Please select an option:",
-            choices=menu_choices,
-            default=menu_choices[0],
-            pointer='>',
-            qmark=''
-        ).execute()
-        if res == menu_choices[1]:
-            self.main()
-        elif res == menu_choices[2]:
-            sys.edit_settings()
-            pr.start()
-        elif res == menu_choices[3]:
-            valid.customsort()
-            input('done. press ENTER to exit')
-        elif res == menu_choices[4]:
-            sys.checkproxy()
-            pr.start()
-        elif res == menu_choices[5]:
-            os.system('cls')
-            print(f'''
-    valchecker v{self.version} by liljaba1337
-
-    server: https://discord.gg/r3Y5KhM7kP
-    help: https://liljaba1337.gitbook.io/untitled/
-
-  [1] - check valid/invalid/ban and save them to valid.txt in output folder
-  [2] - i think u understand
-  [3] - sorts all accounts from valid.txt which match your requirements to output\\sorted\\custom.txt
-  [4] - test your proxies
-
-  [~] - press ENTER to return
-            ''')
-            input()
-            pr.start()
-        elif res == menu_choices[7]:
-            os._exit(0)
+        app = QtWidgets.QApplication(syst.argv)
+        MainWindow = QtWidgets.QMainWindow()
+        ui = Ui_MainWindow()
+        ui.setupUi(MainWindow)
+        MainWindow.show()
+        app.exec_()
 
     def get_accounts(self, filename):
         while True:
